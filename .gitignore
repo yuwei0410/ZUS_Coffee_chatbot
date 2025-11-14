@@ -1,0 +1,13 @@
+# Python
+.venv/
+*.pyc
+__pycache__/
+
+# Secrets (CRITICAL)
+.env
+HUGGINGFACEHUB_API_TOKEN
+
+# Local Data Files (Provide ingestion scripts instead)
+*.db
+*.faiss
+*.json
