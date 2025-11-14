@@ -1,12 +1,12 @@
 import operator
 import re
-import traceback  # <-- ADDED
+import traceback  
 from typing import Annotated, Literal, Sequence, TypedDict, Union
 
 import requests
-import uvicorn  # <-- ADDED
-from fastapi import FastAPI, HTTPException  # <-- ADDED
-from fastapi.middleware.cors import CORSMiddleware  # <-- ADDED
+import uvicorn 
+from fastapi import FastAPI, HTTPException  
+from fastapi.middleware.cors import CORSMiddleware 
 from langchain_core.messages import (
     AIMessage,
     BaseMessage,
@@ -17,16 +17,17 @@ from langchain_core.messages import (
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, StateGraph
-from pydantic import BaseModel  # <-- ADDED
+from pydantic import BaseModel  
 
 # --- Global Config ---
-HF_REPO_ID = "mistralai/Mistral-7B-Instruct-v0.2"
+HF_REPO_ID = "meta-llama/Meta-Llama-3-8B-Instruct"
 # --- MODIFIED: The API_BASE_URL now points to your *other* server ---
 API_BASE_URL = "http://127.0.0.1:8000"  # Your main.py (tools) server
 
 # --- 1. Load the LLM (as a Chat Model) ---
+hf_token = "YOUR_HF_TOKEN"
 print(f"--- [AGENT] Loading model from Hugging Face Inference API: {HF_REPO_ID} ---")
-llm_endpoint = HuggingFaceEndpoint(repo_id=HF_REPO_ID, max_new_tokens=250, temperature=0.1, task="conversational")
+llm_endpoint = HuggingFaceEndpoint(repo_id=HF_REPO_ID, max_new_tokens=250, temperature=0.1, task="conversational", huggingfacehub_api_token=hf_token)
 llm = ChatHuggingFace(llm=llm_endpoint)
 print("--- [AGENT] Model loaded successfully (as ChatModel) ---")
 

@@ -27,7 +27,7 @@ from langchain_huggingface import (
 from pydantic import BaseModel
 
 # --- ADDED: Import your agent creator ---
-from test_planner import create_agent_app
+from planner import create_agent_app
 
 # --- Workaround for OMP Error on macOS ---
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
@@ -36,7 +36,7 @@ os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 FAISS_INDEX_FILE = "products.faiss"
 METADATA_FILE = "metadata.json"
 EMBEDDING_MODEL_REPO_ID = "sentence-transformers/all-MiniLM-L6-v2"
-HF_RAG_LLM_REPO_ID = "mistralai/Mistral-7B-Instruct-v0.2"
+HF_RAG_LLM_REPO_ID = "meta-llama/Meta-Llama-3-8B-Instruct"
 HF_TEXT2SQL_LLM_REPO_ID = "ruslanmv/Meta-Llama-3.1-8B-Text-to-SQL"
 
 # This dictionary will hold all our loaded models and data
@@ -68,7 +68,7 @@ async def startup_event():
     """
     print("--- Loading models and data... ---")
 
-    hf_token = os.environ.get("HUGGINGFACEHUB_API_TOKEN")
+    hf_token = "YOUR_HF_TOKEN"
     if not hf_token:
         print("\n" + "=" * 50)
         print("WARNING: HUGGINGFACEHUB_API_TOKEN environment variable not set.")
