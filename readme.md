@@ -57,7 +57,7 @@ Follow these steps to run the complete application (backend servers + frontend c
 * Git
 
 ### Get ready
-
+Open main.py and planner.py, then search for "hf_token". Fill in your huggingface api token.
 ```bash
 git clone https://github.com/yuwei0410/ZUS_Coffee_chatbot.git
 cd [YOUR_PROJECT_FOLDER_NAME]
