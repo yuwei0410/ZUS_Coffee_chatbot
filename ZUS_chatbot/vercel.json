@@ -1,0 +1,30 @@
+{
+  "builds": [
+    {
+      "src": "vue-project/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    },
+    {
+      "src": "main.py", 
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "15mb",
+        "runtime": "python3.11"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "main.py" 
+    },
+    {
+      "src": "/(.*)",
+      "dest": "vue-project/dist/index.html"
+    }
+  ],
+  "installCommand": "npm install --prefix vue-project && pip install -r requirements.txt" 
+}

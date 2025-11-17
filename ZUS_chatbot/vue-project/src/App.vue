@@ -72,7 +72,7 @@
 import { ref, onMounted, nextTick, watch } from "vue";
 
 // --- Configuration ---
-const AGENT_API_URL = "http://127.0.0.1:8001/chat";
+const AGENT_API_URL = "/api/chat";
 const LOCAL_STORAGE_MESSAGES_KEY = "chat_messages";
 const LOCAL_STORAGE_SESSION_KEY = "chat_session_id";
 
